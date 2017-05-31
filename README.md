@@ -85,4 +85,14 @@ First, add an instance property `this.state = {filterText: '', inStockOnly: fals
 Then, pass `filterText` and `inStockOnly` to `ProductTable` and `SearchBar` as a prop.
 Finally, use these props to filter the rows in `ProductTable` and set the values of the form fields in `SearchBar`.
 
+
+## Add inverse data flow
+
+So far, we've built an app that renders correctly as a function of props and state flowing down the hierarchy.
+Now it's time to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+
+We want to make sure that whenever the user changes the form, we update the state to reflect the user input.
+Since components should only update their own state, `FilterableProductTable` will pass callbacks to `SearchBar` that will fire whenever the state should be updated.
+The callbacks passed by `FilterableProductTable` will call `setState()`, and the app will be updated.
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
