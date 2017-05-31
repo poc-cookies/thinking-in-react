@@ -38,4 +38,29 @@ At the end of this step, you'll have a library of reusable components that rende
 The components will only have `render()` methods since this is a static version of your app.
 
 
+## Step 3: Identify the minimal (but complete) representation of UI state
+
+To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is DRY: *Don't Repeat Yourself*.
+Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand.
+
+Think of all of the pieces of data in our example application. We have:
+* The original list of products
+* The search text the user has entered
+* The value of the checkbox
+* The filtered list of products
+
+Let's go through each one and figure out which one is state. Simply ask three questions about each piece of data:
+1. Is it passed in from a parent via props? If so, it probably isn't state.
+2. Does it remain unchanged over time? If so, it probably isn't state.
+3. Can you compute it based on any other state or props in your component? If so, it isn't state.
+
+The original list of products is passed in as props, so that's not state.
+The search text and the checkbox seem to be state since they change over time and can't be computed from anything.
+And finally, the filtered list of products isn't state because it can be computed by combining the original list of products with the search text and value of the checkbox.
+
+So finally, our state is:
+* The search text the user has entered
+* The value of the checkbox
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
